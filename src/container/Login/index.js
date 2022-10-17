@@ -1,13 +1,13 @@
-import React, { Component } from "react";
-
-import Form from "../../components/Form";
+import React, { Component } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import Form from '../../components/Form';
 
 class index extends Component {
   constructor(props) {
     super();
     this.state = {
-      email: "",
-      password: "",
+      email: '',
+      password: '',
     };
   }
 
@@ -18,7 +18,7 @@ class index extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     console.log(
-      "handle Submit function",
+      'handle Submit function',
       this.state.email,
       this.state.password
     );
@@ -27,8 +27,8 @@ class index extends Component {
     return (
       <Form
         handleSubmit={this.handleSubmit}
-        title={"Sign In"}
-        buttonName={"Sign In"}
+        title={'Sign In'}
+        buttonName={'Sign In'}
         handleChange={this.handleChange}
         email={this.state.email}
         password={this.state.password}
