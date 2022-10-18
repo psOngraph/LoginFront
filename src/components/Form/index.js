@@ -108,7 +108,7 @@ export class index extends Component {
                   <Grid item>
                     <Link
                       style={{ textDecoration: "none", color: "blue" }}
-                      to="/signin"
+                      to="/"
                     >
                       {"Already have an account. Sign In"}
                     </Link>

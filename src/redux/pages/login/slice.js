@@ -1,16 +1,16 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { loginThunk } from './thunk';
+import { createSlice } from "@reduxjs/toolkit";
+import { loginThunk } from "./thunk";
 
 export const initialState = {
   loading: false,
   isAuthenticated: false,
   user: {},
-  token: '',
-  error: '',
+  token: "",
+  error: "",
 };
 
 export const loginSlice = createSlice({
-  name: 'loginState',
+  name: "loginState",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
@@ -37,11 +37,27 @@ export const loginSlice = createSlice({
         return {
           ...state,
           loading: false,
-          token: '',
+          token: "",
           user: {},
           isAuthenticated: false,
         };
-      });
+      })
+      .addCase(loginThunk.signup.pending, (state) => ({
+        ...state,
+        loading: true,
+      }))
+      .addCase(loginThunk.signup.fulfilled, (state, { payload }) => {
+        return {
+          ...state,
+          loading: false,
+          user: payload.user,
+        };
+      })
+      .addCase(loginThunk.signup.rejected, (state, { payload }) => ({
+        ...state,
+        loading: false,
+        error: payload,
+      }));
   },
 });
 
